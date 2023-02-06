@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "uart.h"
+#include "filter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -107,7 +108,7 @@ int main(void)
   	uint16_t value = HAL_ADC_GetValue(&hadc1);
   	HAL_ADC_Stop(&hadc1);
 
-  	printf("Temperature = %d\n", value);
+  	printf("%d %d %d\n\r", value, AvgFilter(value), (int)Kalman((double)value));
   	HAL_Delay(100);
   }
   /* USER CODE END 3 */
